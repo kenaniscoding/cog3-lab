@@ -50,7 +50,18 @@ from sklearn.model_selection import train_test_split
 # Save the testing data to variable X_test
 # Save the target to variable y
 ### --YOUR CODE HERE-- ###
+  
+wine = load_wine() 
+print(wine.DESCR) 
+X, y = wine.data, wine.target
 
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, shuffle=True, random_state=0, stratify=y)
+
+scaler = MinMaxScaler()
+
+X_train = scaler.fit_transform(X_train)
+
+X_test = scaler.transform(X_test)
 """2. Build an autoencoder with the architecture illustrated below. Use the Keras `Sequential` object to build it.
 <center><img src="https://drive.google.com/uc?export=view&id=128exLfIE21H2PVoz5w5qZn-9lESgzTFK"></center>
 """
