@@ -60,6 +60,7 @@ def run(model: str, camera_id: int, width: int, height: int,
     options = vision.ObjectDetectorOptions(
         base_options=base_options,
         score_threshold=0.5,
+        # TODO: change this ???
         category_allowlist=[target_object]  # Detect only specified object
     )
     detector = vision.ObjectDetector.create_from_options(options)
@@ -96,9 +97,9 @@ def run(model: str, camera_id: int, width: int, height: int,
             right_percentage = (right_overlap / bbox.width) * 100 if bbox.width > 0 else 0
 
             # Determine side
-            if left_percentage > 70:
+            if left_percentage > 75:
                 position = "LEFT"
-            elif right_percentage > 70:
+            elif right_percentage > 75:
                 position = "RIGHT"
             else:
                 position = "CENTER"
